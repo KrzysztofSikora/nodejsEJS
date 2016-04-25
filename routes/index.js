@@ -16,11 +16,11 @@ app.use(bodyParser.json())
 // });
 
 //dodaje
-router.get('/', function(req, res) {
-  res.sendfile('./layouts/posts.html');
-});
+// router.get('/', function(req, res) {
+//   res.sendfile('./layouts/posts.html');
+// });
 
-
+router.use( require('../controllers/static'))
 
 // Adds
 // router.get('/api/posts', function (req, res) {
@@ -43,7 +43,7 @@ router.get('/', function(req, res) {
 //
 // });
 
-require('/home/krzysztof/IdeaProjects/nodejsEJS/controllers/api/posts.js')(router)
+router.use(require('/home/krzysztof/IdeaProjects/nodejsEJS/controllers/api/posts.js'))
 
 
 
