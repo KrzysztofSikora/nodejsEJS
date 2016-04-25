@@ -11,21 +11,40 @@ app.use(bodyParser.json())
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
+
+//dodaje
+router.get('/', function(req, res) {
+  res.sendfile('./layouts/posts.html');
 });
+
 
 
 // Adds
-router.get('/api/posts', function (req, res) {
-  res.json([
-    {
-      username: 'dickyxxx',
-      body: 'Node.js wymiata!'
-    }
-  ])
+// router.get('/api/posts', function (req, res) {
+//   res.json([
+//     {
+//       username: 'dickyxxx',
+//       body: 'Node.js wymiata!'
+//     }
+//   ])
+//
+// });
 
-});
+// router.get('/api/posts', function (req, res) {
+//   Post.find()
+//       .sort('-date')
+//       .exec(function(err, posts) {
+//         if (err) { return next(err) }
+//         res.json(posts)
+//       })
+//
+// });
+
+require('/home/krzysztof/IdeaProjects/nodejsEJS/controllers/api/posts.js')(router)
+
 
 
 // router.post('/api/posts', function (req, res) {
@@ -37,22 +56,22 @@ router.get('/api/posts', function (req, res) {
 // })
 
 // var mongoose = require('mongoose');
-var Post = require('/home/krzysztof/IdeaProjects/nodejsEJS/models/post');
-
-
-router.post('/api/posts', function (req, res, next) {
-  var post = new Post({
-    username: req.body.username,
-    body: req.body.body
-  });
-  post.save(function (err, post) {
-    if (err) { return next(err) }
-    res.json(201,post)
-
-
-
-  })
-});
+// var Post = require('/home/krzysztof/IdeaProjects/nodejsEJS/models/post');
+//
+//
+// router.post('/api/posts', function (req, res, next) {
+//   var post = new Post({
+//     username: req.body.username,
+//     body: req.body.body
+//   });
+//   post.save(function (err, post) {
+//     if (err) { return next(err) }
+//     res.json(201,post)
+//
+//
+//
+//   })
+// });
 
 
 
