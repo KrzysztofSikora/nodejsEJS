@@ -13,4 +13,9 @@ router.get('/', function (req, res) {
     res.sendfile('layouts/posts.html')
 })
 
+
+router.get('/angul', function (req, res) {
+    res.sendfile('layouts/angul.html')
+})
+
 module.exports = router
