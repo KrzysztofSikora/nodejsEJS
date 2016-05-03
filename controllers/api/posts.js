@@ -31,4 +31,28 @@ router.post('/api/posts', function (req, res, next) {
     })
 })
 
+//delete by idno
+// router.delete('/api/posts/:id')
+router.delete('/api/posts/:id', function (req, res, next) {
+    Post.remove( {_id:req.params.id})
+        .exec(function (err, post) {
+            if (err) {
+                return next(err)
+            }
+            res.json(post)
+        })
+})
+
+// find and remove by id ostatni:D
+router.get('/api/posts/last', function (req, res, next) {
+   Post.findOneAndRemove()
+        .sort('-date')
+        .exec(function (err, post) {
+            if (err){ return next(err) }
+            res.json(post)
+        })
+})
+
+
+
 module.exports = router
