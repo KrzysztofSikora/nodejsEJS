@@ -33,13 +33,14 @@ router.post('/api/posts', function (req, res, next) {
 
 //delete by idno
 // router.delete('/api/posts/:id')
-router.delete('/api/posts/:id', function (req, res, next) {
+router.get('/api/posts/:id', function (req, res, next) {
     Post.remove( {_id:req.params.id})
         .exec(function (err, post) {
             if (err) {
                 return next(err)
             }
-            res.json(post)
+           // res.json(post)
+            res.sendfile('layouts/angul.html')
         })
 })
 

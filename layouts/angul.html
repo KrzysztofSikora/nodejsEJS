@@ -25,6 +25,9 @@
             <span> {{ post.body }} </span>
             <span> Id posta: {{ post._id }} </span>
             <span> Data posta: {{ post.date }} </span>
+
+
+            <a ng-click="oneDelete()" href="/api/posts/{{post._id}}" >Usuń ten post</a>
         </li>
     </ul>
 </div>
@@ -45,29 +48,41 @@
         $scope.posts = [
             {}
         ];
-
+    // dodawanie posta
         $scope.addPost = function () {
-            $http.post('/api/posts',
-                    {
-                        username: $scope.postName,
-                        body: $scope.postBody
-                    }
-            ).success(function (post) {
-                $scope.posts.unshift(post)
-            })
 
+//            if($scope.postName && $scope.postBody) {
+
+                $http.post('/api/posts',
+                        {
+                            username: $scope.postName,
+                            body: $scope.postBody
+                        }
+                ).success(function (post) {
+                    $scope.posts.unshift(post)
+                })
+//            }
         }
 
 
-
+    // usuwanie posta
         $scope.delPost = function () {
             $http.get('/api/posts/last').success(function () {
                 $scope.posts.shift()
-           })
+            })
+
+
         }
-        // działa kurwa!
+
+        $scope.oneDelete = function () {
+            $http.get('/api/posts/:id').success(function () {
+                $scope.posts.shift()
+            })
+        }
 
     })
+
+
 </script>
 </body>
 </html>
