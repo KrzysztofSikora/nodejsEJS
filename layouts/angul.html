@@ -27,15 +27,35 @@
             <span> Data posta: {{ post.date }} </span>
 
 
+
+            <form>
+                <div class="form-group">
+                    <label>Tytuł</label>
+                    <input class="form-control" ng-model="post.username"></input>
+                </div>
+                <div class="form-group">
+                    <label>Treść</label>
+                    <textarea class="form-control" ng-model="post.username"></textarea>
+                </div>
+            <input type="button" class="btn btn-primary" value="Zapisz" ng-click="save()"></input>
+            </form>
+
+
+
+
             <a ng-click="oneDelete()" href="/api/posts/{{post._id}}" >Usuń ten post</a>
         </li>
     </ul>
 </div>
+
+
 <!--<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.js'></script>-->
 <script>
 
 
     var app = angular.module('app', [])
+
+
     app.controller('PostsCtrl', function ($scope, $http) {
 
         // pobieranie za pomocą 'GET' wszystkich postów z api
@@ -78,6 +98,11 @@
             $http.get('/api/posts/:id').success(function () {
                 $scope.posts.shift()
             })
+        }
+
+        $scope.save = function () {
+
+
         }
 
     })
