@@ -31,6 +31,10 @@ router.post('/api/posts', function (req, res, next) {
     })
 })
 
+
+
+
+///// dodaje rozszerzenie projektu
 //delete by idno
 // router.delete('/api/posts/:id')
 router.get('/api/posts/:id', function (req, res, next) {
@@ -55,7 +59,34 @@ router.get('/api/posts/last', function (req, res, next) {
 })
 
 
+// dodaje
+router.put('/api/posts/update/:id', function (req, res, next) {
+    Post.update(
+        {
+            _id:req.params.id
+        },
+        { 
+            username: req.body.username, 
+            body: req.body.body
 
+        }).exec(function (err, post) {
+            if (err){ return next(err)}
+
+        res.json(post)
+    })
+})
+
+router.delete('/api/posts/delete/:id', function (req, res, next) {
+    Post.remove(
+        {
+            _id:req.params.id
+
+        }).exec(function (err, post) {
+        if (err){ return next(err)}
+
+        res.json(post)
+    })
+})
 
 
 module.exports = router

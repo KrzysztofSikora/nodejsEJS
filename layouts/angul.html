@@ -35,9 +35,10 @@
                 </div>
                 <div class="form-group">
                     <label>Treść</label>
-                    <textarea class="form-control" ng-model="post.username"></textarea>
+                    <textarea class="form-control" ng-model="post.body"></textarea>
                 </div>
-            <input type="button" class="btn btn-primary" value="Zapisz" ng-click="save()"></input>
+            <input type="button" class="btn btn-primary" value="Usuń" ng-click="delete(post)"></input>
+            <input type="button" class="btn btn-primary" value="Zapisz zmiany" ng-click="save(post)"></input>
             </form>
 
 
@@ -100,9 +101,21 @@
             })
         }
 
-        $scope.save = function () {
+        $scope.delete = function (post) {
+           // var id = $scope.post._id
+            console.log(post._id)
+            $http({
+                method: "DELETE",
+                url: '/api/posts/delete/' + post._id
+            })
+        }
 
-
+        $scope.save = function (post) {
+            $http({
+                method: "PUT",
+                url: '/api/posts/update/' + post._id,
+                data: post
+            })
         }
 
     })
