@@ -49,7 +49,7 @@ router.get('/api/posts/:id', function (req, res, next) {
 })
 
 // find and remove by id ostatni:D
-router.get('/api/posts/last', function (req, res, next) {
+router.get('/api/delete/last', function (req, res, next) {
    Post.findOneAndRemove()
         .sort('-date')
         .exec(function (err, post) {
