@@ -2,7 +2,7 @@
  * Created by krzysztof on 25.04.16.
  */
 
-var Post = require('/home/krzysztof/IdeaProjects/nodejsEJS/models/post');
+var Post = require('../../models/post');
 var router = require('express').Router()
 
 
